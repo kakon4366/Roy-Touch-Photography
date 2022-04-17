@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [nameError, setNameError] = useState("");
@@ -110,6 +110,12 @@ const Register = () => {
 								type="submit"
 								value="Register"
 							/>
+							<small className="mt-2">
+								Already have an account?{" "}
+								<Link className="text-blue-700" to="/login">
+									Login
+								</Link>
+							</small>
 						</form>
 					</div>
 					<span>or</span>

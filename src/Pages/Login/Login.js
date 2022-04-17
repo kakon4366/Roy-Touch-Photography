@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -75,6 +75,12 @@ const Login = () => {
 							type="submit"
 							value="Login"
 						/>
+						<small className="mt-2">
+							No account yet?{" "}
+							<Link className="text-blue-700" to="/register">
+								Register
+							</Link>
+						</small>
 					</form>
 					<div className="mx-auto">
 						<SocialLogin></SocialLogin>
