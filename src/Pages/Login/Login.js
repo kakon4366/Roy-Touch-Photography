@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -9,13 +9,21 @@ const Login = () => {
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 
-	const [signInWithEmailAndPassword, loading] =
+	const [signInWithEmailAndPassword, user, loading] =
 		useSignInWithEmailAndPassword(auth);
 
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	let from = location.state?.from?.pathname || "/";
 
 	if (loading) {
 		return <Loading></Loading>;
+	}
+
+	if (user) {
+		console.log("Asce re....");
+		navigate(from, { replace: true });
 	}
 
 	const handleSubmit = (e) => {
@@ -33,9 +41,8 @@ const Login = () => {
 			return;
 		} else {
 			setPasswordError("");
-			signInWithEmailAndPassword(email, password);
-			navigate("/home");
 		}
+		signInWithEmailAndPassword(email, password);
 	};
 
 	return (

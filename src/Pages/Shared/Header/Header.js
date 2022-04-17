@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import logo from "../../../images/light-logo.png";
 import { MenuAlt3Icon, XIcon } from "@heroicons/react/solid";
 import { useAuthState } from "react-firebase-hooks/auth";
