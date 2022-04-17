@@ -1,11 +1,29 @@
 import React from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+	const [createUserWithEmailAndPassword, user, loading, error] =
+		useCreateUserWithEmailAndPassword(auth);
+
+	const navigate = useNavigate();
+
 	const handleRegisterSubmit = (e) => {
 		e.preventDefault();
-		alert("Working...");
+
+		const name = e.target.name.value;
+		const email = e.target.email.value;
+		const password = e.target.password.value;
+		const confirmPassword = e.target.confirmpassword.value;
+
+		if (password === confirmPassword) {
+			createUserWithEmailAndPassword(email, password);
+			navigate("/home");
+		}
 	};
+
 	return (
 		<div>
 			<div className="container mx-auto flex justify-center items-center">
@@ -16,6 +34,7 @@ const Register = () => {
 							<div className="flex flex-col">
 								<label htmlFor="">Full Name</label>
 								<input
+									name="name"
 									className="border-2 rounded p-2"
 									type="text"
 									placeholder="Full Name"
@@ -27,6 +46,7 @@ const Register = () => {
 							<div className="flex flex-col mt-2">
 								<label htmlFor="">E-mail Address</label>
 								<input
+									name="email"
 									className="border-2 rounded p-2"
 									type="email"
 									placeholder="E-mail Address"
@@ -38,6 +58,7 @@ const Register = () => {
 							<div className="flex flex-col mt-2">
 								<label htmlFor="">Password</label>
 								<input
+									name="password"
 									className="border-2 rounded p-2"
 									type="password"
 									placeholder="Password"
@@ -49,6 +70,7 @@ const Register = () => {
 							<div className="flex flex-col mt-2">
 								<label htmlFor="">Confirm Password</label>
 								<input
+									name="confirmpassword"
 									className="border-2 rounded p-2"
 									type="password"
 									placeholder="Confirm Password"
