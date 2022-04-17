@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+	const [nameError, setNameError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [conPasswordError, setConPasswordError] = useState("");
+
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 
@@ -18,7 +23,28 @@ const Register = () => {
 		const password = e.target.password.value;
 		const confirmPassword = e.target.confirmpassword.value;
 
-		if (password === confirmPassword) {
+		//validation
+		if (!name) {
+			setNameError("Name must be required!");
+			return;
+		} else if (!email) {
+			setEmailError("Email Address must be required!");
+			setNameError("");
+			return;
+		} else if (!password) {
+			setPasswordError("Password must be required!");
+			setEmailError("");
+			return;
+		} else if (password.length < 6) {
+			setPasswordError("Password length will be 6");
+			return;
+		} else {
+			setPasswordError("");
+		}
+
+		if (password !== confirmPassword) {
+			setConPasswordError("Confirm password is not match!");
+		} else {
 			createUserWithEmailAndPassword(email, password);
 			navigate("/home");
 		}
@@ -29,7 +55,7 @@ const Register = () => {
 			<div className="container mx-auto flex justify-center items-center">
 				<div className="flex justify-center items-center">
 					<div className="border-2 w-[450px] my-20 p-4 m-2 rounded-md">
-						<h2 className="text-3xl text-center">Login</h2>
+						<h2 className="text-3xl text-center">Register</h2>
 						<form onSubmit={handleRegisterSubmit} className="text-xl p-5">
 							<div className="flex flex-col">
 								<label htmlFor="">Full Name</label>
@@ -40,7 +66,7 @@ const Register = () => {
 									placeholder="Full Name"
 								/>
 								<span className="text-red-500 text-sm">
-									Error Message
+									{nameError}
 								</span>
 							</div>
 							<div className="flex flex-col mt-2">
@@ -52,7 +78,7 @@ const Register = () => {
 									placeholder="E-mail Address"
 								/>
 								<span className="text-red-500 text-sm">
-									Error Message
+									{emailError}
 								</span>
 							</div>
 							<div className="flex flex-col mt-2">
@@ -64,7 +90,7 @@ const Register = () => {
 									placeholder="Password"
 								/>
 								<span className="text-red-500 text-sm">
-									Error Message
+									{passwordError}
 								</span>
 							</div>
 							<div className="flex flex-col mt-2">
@@ -76,13 +102,13 @@ const Register = () => {
 									placeholder="Confirm Password"
 								/>
 								<span className="text-red-500 text-sm">
-									Error Message
+									{conPasswordError}
 								</span>
 							</div>
 							<input
 								className="w-full bg-slate-800 text-white py-2 rounded mt-4 cursor-pointer"
 								type="submit"
-								value="Login"
+								value="Register"
 							/>
 						</form>
 					</div>

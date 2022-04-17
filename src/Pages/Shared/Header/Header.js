@@ -2,9 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../images/light-logo.png";
 import { MenuAlt3Icon, XIcon } from "@heroicons/react/solid";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import Loading from "../Loading/Loading";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
+	const [user, loading] = useAuthState(auth);
+
+	if (loading) {
+		return <Loading></Loading>;
+	}
+
+	const handleLogout = () => {
+		signOut(auth);
+	};
 
 	return (
 		<header className="sticky top-0 z-10 bg-slate-800">
@@ -44,10 +57,16 @@ const Header = () => {
 							open ? "absolute md:static left-1/2 top-48" : "hidden"
 						}`}
 					>
-						<Link to="/login">Login</Link>
-						<Link to="/register" className="md:ml-12">
-							Register
-						</Link>
+						{user ? (
+							<button onClick={handleLogout}>Logout</button>
+						) : (
+							<>
+								<Link to="/login">Login</Link>
+								<Link to="/register" className="md:ml-12">
+									Register
+								</Link>
+							</>
+						)}
 					</div>
 				</nav>
 			</div>
