@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Event from "./Event/Event";
 
 const Services = () => {
+	const [events, setEvents] = useState([]);
+
+	useEffect(() => {
+		fetch("services.json")
+			.then((res) => res.json())
+			.then((data) => setEvents(data));
+	}, []);
+
 	return (
-		<div>
-			<h2>This is services Page</h2>
-		</div>
+		<section className="py-20">
+			<div className="container mx-auto">
+				<h3 className="text-4xl text-center">Best Services</h3>
+				<div className="grid grid-cols-3 gap-8 mt-12">
+					{events.map((event) => (
+						<Event event={event} key={event.id}></Event>
+					))}
+				</div>
+			</div>
+		</section>
 	);
 };
 
