@@ -4,7 +4,7 @@ const Event = ({ event }) => {
 	const { name, img, text, price } = event;
 	return (
 		<div className="border border-slate-400 p-2 rounded-lg">
-			<img src={img} alt="" />
+			<img width="100%" src={img} alt="" />
 			<h2 className="text-2xl mt-4">{name}</h2>
 			<p>{text}</p>
 			<h4 className="text-3xl mt-2">
