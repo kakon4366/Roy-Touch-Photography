@@ -1,4 +1,5 @@
 import React from "react";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
 	const handleSubmit = (e) => {
@@ -8,7 +9,7 @@ const Login = () => {
 	return (
 		<div>
 			<div className="container mx-auto flex justify-center items-center">
-				<div className="border-2 w-[500px] my-20 p-4 rounded-md">
+				<div className="border-2 w-[500px] my-20 p-4 rounded-md text">
 					<h2 className="text-3xl text-center">Login</h2>
 					<form onSubmit={handleSubmit} className="text-xl p-5">
 						<div className="flex flex-col">
@@ -35,6 +36,9 @@ const Login = () => {
 							value="Login"
 						/>
 					</form>
+					<div className="mx-auto">
+						<SocialLogin></SocialLogin>
+					</div>
 				</div>
 			</div>
 		</div>
