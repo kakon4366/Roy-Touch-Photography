@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Loading from "../Loading/Loading";
 import { signOut } from "firebase/auth";
+import CustomLink from "../CustomLink/CustomLink";
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
@@ -34,26 +35,26 @@ const Header = () => {
 						)}
 					</div>
 					<ul
-						className={`flex md:block flex-col text-center ${
+						className={`md:flex block flex-row text-center ${
 							open ? "absolute md:static left-1/2 top-20" : "hidden"
 						}`}
 					>
-						<Link to="/home">Home</Link>
-						<Link to="/about" className="md:ml-12">
+						<CustomLink to="/home">Home</CustomLink>
+						<CustomLink to="/about" className="md:ml-12">
 							About
-						</Link>
-						<Link to="/services" className="md:ml-12">
+						</CustomLink>
+						<CustomLink to="/services" className="md:ml-12">
 							Services
-						</Link>
-						<Link to="/checkout" className="md:ml-12">
+						</CustomLink>
+						<CustomLink to="/checkout" className="md:ml-12">
 							Checkout
-						</Link>
-						<Link to="/blog" className="md:ml-12">
+						</CustomLink>
+						<CustomLink to="/blog" className="md:ml-12">
 							Blog
-						</Link>
+						</CustomLink>
 					</ul>
 					<div
-						className={`flex md:block flex-col text-center ${
+						className={`md:flex block flex-row text-center ${
 							open ? "absolute md:static left-1/2 top-48" : "hidden"
 						}`}
 					>
@@ -61,10 +62,10 @@ const Header = () => {
 							<button onClick={handleLogout}>Logout</button>
 						) : (
 							<>
-								<Link to="/login">Login</Link>
-								<Link to="/register" className="md:ml-12">
+								<CustomLink to="/login">Login</CustomLink>
+								<CustomLink to="/register" className="md:ml-12">
 									Register
-								</Link>
+								</CustomLink>
 							</>
 						)}
 					</div>
