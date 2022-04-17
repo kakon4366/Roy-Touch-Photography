@@ -6,6 +6,7 @@ import auth from "../../../firebase.init";
 import Loading from "../Loading/Loading";
 import { signOut } from "firebase/auth";
 import CustomLink from "../CustomLink/CustomLink";
+import avatar from "../../../images/avatar.jpg";
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
@@ -58,7 +59,35 @@ const Header = () => {
 						}`}
 					>
 						{user ? (
-							<button onClick={handleLogout}>Logout</button>
+							<div className="flex items-center">
+								<div className="flex items-center">
+									{user.photoURL ? (
+										<img
+											className="rounded-full border  border-slate-200"
+											height="40px"
+											width="40px"
+											src={user.photoURL}
+											alt=""
+										/>
+									) : (
+										<img
+											className="rounded-full border  border-slate-200"
+											height="40px"
+											width="40px"
+											src={avatar}
+											alt=""
+										/>
+									)}
+
+									<p className="mr-4 ml-2">{user.displayName}</p>
+								</div>
+								<button
+									className="border hover:bg-slate-200 hover:text-slate-800 py-1 px-4 rounded"
+									onClick={handleLogout}
+								>
+									Logout
+								</button>
+							</div>
 						) : (
 							<>
 								<CustomLink to="/login">Login</CustomLink>

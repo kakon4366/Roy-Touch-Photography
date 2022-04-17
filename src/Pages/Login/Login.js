@@ -22,7 +22,6 @@ const Login = () => {
 	}
 
 	if (user) {
-		console.log("Asce re....");
 		navigate(from, { replace: true });
 	}
 

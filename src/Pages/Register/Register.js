@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+	useCreateUserWithEmailAndPassword,
+	useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
@@ -11,8 +14,10 @@ const Register = () => {
 	const [passwordError, setPasswordError] = useState("");
 	const [conPasswordError, setConPasswordError] = useState("");
 
-	const [createUserWithEmailAndPassword, user, loading, error] =
+	const [createUserWithEmailAndPassword, user, loading] =
 		useCreateUserWithEmailAndPassword(auth);
+
+	const [updateProfile, updating] = useUpdateProfile(auth);
 
 	const navigate = useNavigate();
 
@@ -20,7 +25,11 @@ const Register = () => {
 		return <Loading></Loading>;
 	}
 
-	const handleRegisterSubmit = (e) => {
+	if (updating) {
+		return <p>Updating...</p>;
+	}
+
+	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
 
 		const name = e.target.name.value;
@@ -51,7 +60,9 @@ const Register = () => {
 			setConPasswordError("Confirm password is not match!");
 		}
 
-		createUserWithEmailAndPassword(email, password);
+		await createUserWithEmailAndPassword(email, password);
+		await updateProfile({ displayName: name });
+		console.log("Updated profile");
 		navigate("/home");
 	};
 
