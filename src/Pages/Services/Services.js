@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useEvents from "../../Hooks/useEvents";
 import Event from "./Event/Event";
 
 const Services = () => {
-	const [events, setEvents] = useState([]);
+	const [events] = useEvents([]);
+	const navigate = useNavigate();
 
-	useEffect(() => {
-		fetch("services.json")
-			.then((res) => res.json())
-			.then((data) => setEvents(data));
-	}, []);
+	const handleBooking = (id) => {
+		navigate("/checkout/" + id);
+	};
 
 	return (
 		<section className="py-20">
@@ -16,7 +17,11 @@ const Services = () => {
 				<h3 className="text-4xl text-center">Best Services</h3>
 				<div className="grid gird-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-12">
 					{events.map((event) => (
-						<Event event={event} key={event.id}></Event>
+						<Event
+							event={event}
+							handleBooking={handleBooking}
+							key={event.id}
+						></Event>
 					))}
 				</div>
 			</div>

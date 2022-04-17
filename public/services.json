@@ -1,23 +1,23 @@
 [
     {
-        "id": 1,
-        "name": "Wedding Ceremony",
-        "img": "https://i.ibb.co/5sJq4LX/couple.jpg",
-        "text": "The best photo quality is every moment.",
-        "price": 1200.99
-    }, 
-    {
-        "id": 2,
-        "name": "Birthday Party",
-        "img": "https://i.ibb.co/mqgKGx1/birthday.jpg",
-        "text": "The best photo quality is every moment.",
-        "price": 700.99
+      "id": 1,
+      "name": "Wedding Ceremony",
+      "img": "https://i.ibb.co/5sJq4LX/couple.jpg",
+      "text": "The best photo quality is every moment.",
+      "price": 1200.99
     },
     {
-        "id": 3,
-        "name": "Picnic Event",
-        "img": "https://i.ibb.co/yfhfxc5/picnic.jpg",
-        "text": "The best photo quality is every moment.",
-        "price": 649.99
+      "id": 2,
+      "name": "Birthday Party",
+      "img": "https://i.ibb.co/mqgKGx1/birthday.jpg",
+      "text": "The best photo quality is every moment.",
+      "price": 700.99
+    },
+    {
+      "id": 3,
+      "name": "Picnic Event",
+      "img": "https://i.ibb.co/yfhfxc5/picnic.jpg",
+      "text": "The best photo quality is every moment.",
+      "price": 649.99
     }
-]
+  ]
