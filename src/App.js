@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import About from "./Pages/About/About";
 import Checkout from "./Pages/Checkout/Checkout";
 import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -16,6 +17,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/home" element={<Home />}></Route>
+				<Route path="/about" element={<About />}></Route>
 				<Route path="/services" element={<Services />}></Route>
 				<Route path="/checkout" element={<Checkout />}></Route>
 				<Route path="/checkout/:checkoutId" element={<Checkout />}></Route>

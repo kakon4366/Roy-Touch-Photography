@@ -9,7 +9,7 @@ const Login = () => {
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 
-	const [signInWithEmailAndPassword, user, loading, error] =
+	const [signInWithEmailAndPassword, loading] =
 		useSignInWithEmailAndPassword(auth);
 
 	const navigate = useNavigate();
@@ -34,10 +34,6 @@ const Login = () => {
 		} else {
 			setPasswordError("");
 			signInWithEmailAndPassword(email, password);
-			if (!error) {
-				alert("Hmmm eroor");
-				return;
-			}
 			navigate("/home");
 		}
 	};
