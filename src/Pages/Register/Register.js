@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loading from "../Shared/Loading/Loading";
 
 const Register = () => {
 	const [nameError, setNameError] = useState("");
@@ -14,6 +15,10 @@ const Register = () => {
 		useCreateUserWithEmailAndPassword(auth);
 
 	const navigate = useNavigate();
+
+	if (loading) {
+		return <Loading></Loading>;
+	}
 
 	const handleRegisterSubmit = (e) => {
 		e.preventDefault();
@@ -44,19 +49,22 @@ const Register = () => {
 
 		if (password !== confirmPassword) {
 			setConPasswordError("Confirm password is not match!");
-		} else {
-			createUserWithEmailAndPassword(email, password);
-			navigate("/home");
 		}
+
+		createUserWithEmailAndPassword(email, password);
+		navigate("/home");
 	};
 
 	return (
 		<div>
 			<div className="container mx-auto flex justify-center items-center">
-				<div className="flex justify-center items-center">
-					<div className="border-2 w-[450px] my-20 p-4 m-2 rounded-md">
+				<div className="lg:flex justify-center items-center">
+					<div className="border-2 w-full lg:w-[450px]  lg:my-20 p-2 lg:p-4 m-2 rounded-md">
 						<h2 className="text-3xl text-center">Register</h2>
-						<form onSubmit={handleRegisterSubmit} className="text-xl p-5">
+						<form
+							onSubmit={handleRegisterSubmit}
+							className="text-xl lg:p-5"
+						>
 							<div className="flex flex-col">
 								<label htmlFor="">Full Name</label>
 								<input
@@ -118,8 +126,8 @@ const Register = () => {
 							</small>
 						</form>
 					</div>
-					<span>or</span>
-					<div className="ml-2 w-[350px]">
+					<span className="block text-center mb-3">or</span>
+					<div className="ml-2 w-full lg:w-[350px]">
 						<SocialLogin></SocialLogin>
 					</div>
 				</div>
