@@ -5,7 +5,7 @@ import {
 	useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 
 const Register = () => {
@@ -14,7 +14,7 @@ const Register = () => {
 	const [passwordError, setPasswordError] = useState("");
 	const [conPasswordError, setConPasswordError] = useState("");
 
-	const [createUserWithEmailAndPassword, user, loading] =
+	const [createUserWithEmailAndPassword, loading] =
 		useCreateUserWithEmailAndPassword(auth);
 
 	const [updateProfile, updating] = useUpdateProfile(auth);
