@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import paypal from "../../images/paypal.png";
 import visa from "../../images/visa.png";
 import mastercard from "../../images/mastercard.png";
@@ -7,6 +7,8 @@ import mastercard from "../../images/mastercard.png";
 const Checkout = () => {
 	const [events, setEvents] = useState([]);
 	const { checkoutId } = useParams();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(process.env.PUBLIC_URL + "/services.json")
@@ -17,6 +19,16 @@ const Checkout = () => {
 	const checkoutEvent = events.find(
 		(event) => event.id === parseInt(checkoutId)
 	);
+
+	const handleBillingInfo = (e) => {
+		e.preventDefault();
+		const fullName = e.target.name.value;
+		const address = e.target.address.value;
+		const zipcode = e.target.zipcode.value;
+		const phone = e.target.phone.value;
+
+		navigate("/billing-info");
+	};
 
 	return (
 		<section className="my-20">
@@ -71,7 +83,7 @@ const Checkout = () => {
 						<div className="mt-8 col-span-2">
 							<h3 className="text-2xl">Billing Details</h3>
 							<hr className="border-slate-400 my-4" />
-							<form action="">
+							<form onSubmit={handleBillingInfo}>
 								<div className="flex flex-col text-lg">
 									<label htmlFor="name">Full Name:</label>
 									<input
