@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+	useSendPasswordResetEmail,
+	useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 
 	const [signInWithEmailAndPassword, user, loading] =
 		useSignInWithEmailAndPassword(auth);
+
+	const [sendPasswordResetEmail, sending, error] =
+		useSendPasswordResetEmail(auth);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -53,6 +60,7 @@ const Login = () => {
 						<div className="flex flex-col">
 							<label htmlFor="">E-mail Address</label>
 							<input
+								onChange={(e) => setEmail(e.target.value)}
 								name="email"
 								className="border-2 rounded p-2"
 								type="email"
@@ -84,6 +92,25 @@ const Login = () => {
 							</Link>
 						</small>
 					</form>
+					<div className="mb-6">
+						<small className="mt-2 block">
+							<button
+								onClick={async () => {
+									if (!email) {
+										setEmailError("Email address must be provide!");
+										return;
+									}
+									await sendPasswordResetEmail(email);
+									alert("Sent email");
+								}}
+								className="text-red-500 text-lg ml-6"
+								to="/register"
+							>
+								Forgot Password
+							</button>
+						</small>
+					</div>
+
 					<div className="mx-auto">
 						<SocialLogin></SocialLogin>
 					</div>
