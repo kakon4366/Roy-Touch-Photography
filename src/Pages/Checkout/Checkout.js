@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import paypal from "../../images/paypal.png";
 import visa from "../../images/visa.png";
 import mastercard from "../../images/mastercard.png";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 const Checkout = () => {
 	const [events, setEvents] = useState([]);
 	const { checkoutId } = useParams();
-
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(process.env.PUBLIC_URL + "/services.json")
@@ -23,11 +25,11 @@ const Checkout = () => {
 	const handleBillingInfo = (e) => {
 		e.preventDefault();
 		const fullName = e.target.name.value;
-		const address = e.target.address.value;
-		const zipcode = e.target.zipcode.value;
-		const phone = e.target.phone.value;
+		// const address = e.target.address.value;
+		// const zipcode = e.target.zipcode.value;
+		// const phone = e.target.phone.value;
 
-		navigate("/billing-info");
+		toast(`Thanks For Booking Mr. ${fullName}`);
 	};
 
 	return (
@@ -126,6 +128,7 @@ const Checkout = () => {
 									value="Save Infomation"
 								/>
 							</form>
+							<ToastContainer />
 						</div>
 						<div className="mt-8">
 							<h3 className="text-2xl">Payment Method</h3>

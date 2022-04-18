@@ -37,10 +37,6 @@ function App() {
 						</RequireAuth>
 					}
 				></Route>
-				<Route
-					path="/billing-info"
-					element={<InfoModal></InfoModal>}
-				></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
 				<Route path="*" element={<NotFound />}></Route>
