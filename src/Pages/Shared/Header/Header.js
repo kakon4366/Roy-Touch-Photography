@@ -27,7 +27,7 @@ const Header = () => {
 					<div>
 						<img className="w-28 md:w-36" src={logo} alt="" />
 					</div>
-					<div onClick={() => setOpen(!open)} className="md:hidden">
+					<div onClick={() => setOpen(!open)} className="lg:hidden">
 						{open ? (
 							<XIcon className="h-8 w-8 text-slate-50" />
 						) : (
@@ -35,32 +35,29 @@ const Header = () => {
 						)}
 					</div>
 					<ul
-						className={`md:flex block flex-row text-center ${
-							open ? "absolute md:static left-1/2 top-20" : "hidden"
+						className={`lg:flex block flex-row text-center ${
+							open
+								? "absolute lg:static w-full lg:w-auto bg-slate-800 lg:bg-transparent py-3 border-t lg:border-t-0 left-0 top-[75px]"
+								: "hidden"
 						}`}
 					>
 						<CustomLink to="/home">Home</CustomLink>
-						<CustomLink to="/about" className="md:ml-12">
+						<CustomLink to="/about" className="lg:ml-10">
 							About
 						</CustomLink>
-						<CustomLink to="/services" className="md:ml-12">
+						<CustomLink to="/services" className="lg:ml-10">
 							Services
 						</CustomLink>
-						<CustomLink to="/checkout" className="md:ml-12">
+						<CustomLink to="/checkout" className="lg:ml-10">
 							Checkout
 						</CustomLink>
-						<CustomLink to="/blog" className="md:ml-12">
+						<CustomLink to="/blog" className="lg:ml-10">
 							Blog
 						</CustomLink>
-					</ul>
-					<div
-						className={`md:flex block flex-row text-center ${
-							open ? "absolute md:static left-1/2 top-48" : "hidden"
-						}`}
-					>
+
 						{user ? (
-							<div className="flex items-center">
-								<div className="flex items-center">
+							<div className="lg:flex items-center lg:ml-10">
+								<div className="flex items-center justify-center mb-4 lg:mb-0">
 									{user.photoURL ? (
 										<img
 											className="rounded-full border  border-slate-200"
@@ -90,13 +87,15 @@ const Header = () => {
 							</div>
 						) : (
 							<>
-								<CustomLink to="/login">Login</CustomLink>
-								<CustomLink to="/register" className="md:ml-12">
+								<CustomLink className="lg:ml-10" to="/login">
+									Login
+								</CustomLink>
+								<CustomLink to="/register" className="lg:ml-10">
 									Register
 								</CustomLink>
 							</>
 						)}
-					</div>
+					</ul>
 				</nav>
 			</div>
 		</header>
