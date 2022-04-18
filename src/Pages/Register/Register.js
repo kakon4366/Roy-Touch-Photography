@@ -15,7 +15,7 @@ const Register = () => {
 	const [conPasswordError, setConPasswordError] = useState("");
 
 	const [createUserWithEmailAndPassword, loading] =
-		useCreateUserWithEmailAndPassword(auth);
+		useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
 	const [updateProfile, updating] = useUpdateProfile(auth);
 
