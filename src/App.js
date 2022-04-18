@@ -3,7 +3,6 @@ import "./App.css";
 import About from "./Pages/About/About";
 import Checkout from "./Pages/Checkout/Checkout";
 import Home from "./Pages/Home/Home/Home";
-import InfoModal from "./Pages/InfoModal/InfoModal";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Services from "./Pages/Services/Services";

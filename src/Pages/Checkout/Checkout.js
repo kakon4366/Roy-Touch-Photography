@@ -36,8 +36,8 @@ const Checkout = () => {
 		<section className="my-20">
 			<div className="container mx-auto">
 				<div className="grid xl:grid-cols-2 gap-8 xl:gap-12">
-					<div className="bg-slate-200 p-4 rounded-lg sm:flex text-center">
-						<div className="w-28 h-28 sm:w-52 sm:h-52 border-2 border-slate-400 p-1 rounded-lg mx-auto">
+					<div className="bg-slate-200 p-4 rounded-lg sm:flex text-center sm:text-left">
+						<div className="w-28 h-28 sm:w-52 sm:h-52 border-2 border-slate-400 p-1 rounded-lg mx-auto sm:mx-0">
 							<img
 								className="w-full rounded-lg"
 								src={checkoutEvent?.img}
@@ -81,8 +81,8 @@ const Checkout = () => {
 				</div>
 				<div className="bg-blue-100 mt-8 p-8 rounded-lg">
 					<h2 className="text-3xl">Checkout</h2>
-					<div className="grid grid-cols-3 gap-4">
-						<div className="mt-8 col-span-2">
+					<div className="grid md:grid-cols-3 gap-4">
+						<div className="mt-8 md:col-span-2">
 							<h3 className="text-2xl">Billing Details</h3>
 							<hr className="border-slate-400 my-4" />
 							<form onSubmit={handleBillingInfo}>
@@ -95,7 +95,7 @@ const Checkout = () => {
 										type="text"
 									/>
 								</div>
-								<div className="flex flex-col text-lg mt-4">
+								<div className="flex flex-col w-full text-lg mt-4">
 									<label htmlFor="address">Address:</label>
 									<input
 										placeholder="Address"
