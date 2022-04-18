@@ -10,14 +10,14 @@
       "id": 2,
       "name": "Birthday Party",
       "img": "https://i.ibb.co/mqgKGx1/birthday.jpg",
-      "text": "The best photo quality is every moment.",
+      "text": "Beautiful scenes become memories among us.",
       "price": 700.99
     },
     {
       "id": 3,
       "name": "Picnic Event",
       "img": "https://i.ibb.co/yfhfxc5/picnic.jpg",
-      "text": "The best photo quality is every moment.",
+      "text": "Moments of going out make our minds better.",
       "price": 649.99
     }
   ]
