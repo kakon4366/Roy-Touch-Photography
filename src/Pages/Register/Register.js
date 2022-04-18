@@ -58,11 +58,10 @@ const Register = () => {
 
 		if (password !== confirmPassword) {
 			setConPasswordError("Confirm password is not match!");
+			return;
 		}
-
 		await createUserWithEmailAndPassword(email, password);
 		await updateProfile({ displayName: name });
-		console.log("Updated profile");
 		navigate("/home");
 	};
 

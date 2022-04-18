@@ -24,12 +24,18 @@ const Checkout = () => {
 
 	const handleBillingInfo = (e) => {
 		e.preventDefault();
-		const fullName = e.target.name.value;
-		// const address = e.target.address.value;
-		// const zipcode = e.target.zipcode.value;
-		// const phone = e.target.phone.value;
 
-		toast(`Thanks For Booking Mr. ${fullName}`);
+		const fullName = e.target.name.value;
+		const address = e.target.address.value;
+		const zipcode = e.target.zipcode.value;
+		const phone = e.target.phone.value;
+
+		// validation
+		if (fullName && address && zipcode && phone) {
+			toast(`Thanks For Booking Mr. ${fullName}`);
+			return;
+		}
+		toast(`Please fillup full form!`);
 	};
 
 	return (
