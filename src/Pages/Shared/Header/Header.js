@@ -7,6 +7,7 @@ import Loading from "../Loading/Loading";
 import { signOut } from "firebase/auth";
 import CustomLink from "../CustomLink/CustomLink";
 import avatar from "../../../images/avatar.jpg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
@@ -25,7 +26,9 @@ const Header = () => {
 			<div className="container mx-auto">
 				<nav className="flex items-center justify-between py-5 text-white">
 					<div>
-						<img className="w-28 md:w-36" src={logo} alt="" />
+						<Link to="/">
+							<img className="w-28 md:w-36" src={logo} alt="" />
+						</Link>
 					</div>
 					<div onClick={() => setOpen(!open)} className="lg:hidden">
 						{open ? (

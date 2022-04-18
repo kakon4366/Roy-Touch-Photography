@@ -59,7 +59,7 @@ const Login = () => {
 			<div className="container mx-auto flex justify-center items-center">
 				<div className="border-2 w-[500px] my-20 p-4 rounded-md text">
 					<h2 className="text-3xl text-center">Login</h2>
-					<form onSubmit={handleSubmit} className="text-xl p-5">
+					<form onSubmit={handleSubmit} className="text-lg p-5">
 						<div className="flex flex-col">
 							<label htmlFor="">E-mail Address</label>
 							<input

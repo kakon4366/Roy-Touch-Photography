@@ -77,7 +77,7 @@ const Register = () => {
 						<h2 className="text-3xl text-center">Register</h2>
 						<form
 							onSubmit={handleRegisterSubmit}
-							className="text-xl lg:p-5"
+							className="text-lg lg:p-5"
 						>
 							<div className="flex flex-col">
 								<label htmlFor="">Full Name</label>
