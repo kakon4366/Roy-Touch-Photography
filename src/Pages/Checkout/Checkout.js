@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import paypal from "../../images/paypal.png";
 import visa from "../../images/visa.png";
 import mastercard from "../../images/mastercard.png";
@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Checkout = () => {
 	const [events, setEvents] = useState([]);
 	const { checkoutId } = useParams();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(process.env.PUBLIC_URL + "/services.json")
@@ -40,6 +42,24 @@ const Checkout = () => {
 	return (
 		<section className="my-20">
 			<div className="container mx-auto">
+				<h2 className="text-2xl mb-2">Choose You Sevice</h2>
+				<div className="sm:flex mb-8">
+					{events.map((event) => (
+						<div
+							key={event.id}
+							onClick={() => navigate(`/checkout/${event.id}`)}
+							className="sm:mr-5 mb-4 text-center rounded-lg border-2 bg-slate-200 p-4 cursor-pointer hover:bg-slate-400"
+						>
+							<img
+								className="rounded-full mx-auto border-2 border-slate-800 p-1"
+								width="80px"
+								src={event.img}
+								alt=""
+							/>
+							<h2 className="text-lg">Event Name {event.name}</h2>
+						</div>
+					))}
+				</div>
 				<div className="grid xl:grid-cols-2 gap-8 xl:gap-12">
 					<div className="bg-slate-200 p-4 rounded-lg sm:flex text-center sm:text-left">
 						<div className="w-28 h-28 sm:w-52 sm:h-52 border-2 border-slate-400 p-1 rounded-lg mx-auto sm:mx-0">
