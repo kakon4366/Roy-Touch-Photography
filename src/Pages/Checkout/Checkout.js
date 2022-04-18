@@ -6,22 +6,33 @@ const Checkout = () => {
 	const { checkoutId } = useParams();
 
 	useEffect(() => {
-		fetch(
-			"https://raw.githubusercontent.com/programming-hero-web-course-4/independent-service-provider-kakon4366/main/public/services.json?token=GHSAT0AAAAAABTFJSGMWIGZMTRZQRLLFB7MYS36LJQ"
-		)
+		fetch(process.env.PUBLIC_URL + "/services.json")
 			.then((res) => res.json())
 			.then((data) => setEvents(data));
 	}, []);
 
-	console.log(events);
-	const checkoutEvent = events.find((event) => event.id === 1);
-	console.log(checkoutEvent);
+	const checkoutEvent = events.find(
+		(event) => event.id === parseInt(checkoutId)
+	);
 
 	return (
-		<section>
-			<div className="container">
-				<div>
-					<h2>This is Checkout Page here {checkoutId}</h2>
+		<section className="my-20">
+			<div className="container mx-auto">
+				<div className="flex bg-slate-200 p-8 rounded-lg">
+					<div className="w-52 h-52 border-2 border-slate-400 p-1 rounded-lg">
+						<img
+							className="w-full rounded-lg"
+							src={checkoutEvent?.img}
+							alt=""
+						/>
+					</div>
+					<div className="ml-8">
+						<h2 className="text-4xl">{checkoutEvent?.name}</h2>
+						<p className="text-xl my-4">{checkoutEvent?.text}</p>
+						<h4 className="text-5xl">
+							Price: $<span>{checkoutEvent?.price}</span>
+						</h4>
+					</div>
 				</div>
 				<div></div>
 			</div>
