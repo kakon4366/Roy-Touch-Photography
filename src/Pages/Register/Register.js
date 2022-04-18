@@ -29,6 +29,7 @@ const Register = () => {
 		return <p>Updating...</p>;
 	}
 
+	//register handler
 	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
 
@@ -56,10 +57,13 @@ const Register = () => {
 			setPasswordError("");
 		}
 
+		//password check
 		if (password !== confirmPassword) {
 			setConPasswordError("Confirm password is not match!");
 			return;
 		}
+
+		//register method
 		await createUserWithEmailAndPassword(email, password);
 		await updateProfile({ displayName: name });
 		navigate("/home");

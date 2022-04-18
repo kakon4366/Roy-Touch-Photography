@@ -4,6 +4,7 @@ import {
 	useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -31,12 +32,14 @@ const Login = () => {
 		navigate(from, { replace: true });
 	}
 
+	//login handler
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		const email = e.target.email.value;
 		const password = e.target.password.value;
 
+		//validation
 		if (!email) {
 			setEmailError("Please provide email address!");
 			return;
@@ -47,6 +50,7 @@ const Login = () => {
 		} else {
 			setPasswordError("");
 		}
+		//sign in method
 		signInWithEmailAndPassword(email, password);
 	};
 
@@ -100,13 +104,14 @@ const Login = () => {
 										return;
 									}
 									await sendPasswordResetEmail(email);
-									alert("Sent email");
+									toast("Sent Email");
 								}}
 								className="text-red-500 text-lg ml-6"
 								to="/register"
 							>
 								Forgot Password
 							</button>
+							<ToastContainer />
 						</small>
 					</div>
 

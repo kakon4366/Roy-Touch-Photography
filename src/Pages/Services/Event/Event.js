@@ -4,7 +4,7 @@ const Event = ({ event, handleBooking }) => {
 	const { id, name, img, text, price } = event;
 
 	return (
-		<div className="border border-slate-400 p-2 rounded-lg">
+		<div className="border border-slate-400 p-2 rounded-lg hover:-translate-y-4 transition-all">
 			<img width="100%" src={img} alt="" />
 			<h2 className="text-2xl mt-4">{name}</h2>
 			<p>{text}</p>

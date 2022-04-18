@@ -9,6 +9,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const SocialLogin = () => {
 	const [signInWithGithub, githubUser] = useSignInWithGithub(auth);
@@ -27,7 +28,10 @@ const SocialLogin = () => {
 	return (
 		<div className="w-full border-2 p-5 rounded-lg">
 			<button
-				onClick={() => signInWithGoogle()}
+				onClick={() => {
+					signInWithGoogle();
+					toast("Login Success!");
+				}}
 				className="flex justify-center items-center mt-3 hover:bg-slate-200 border-2 w-full p-2 rounded"
 			>
 				<img src={google} alt="" />
@@ -47,6 +51,7 @@ const SocialLogin = () => {
 				<img src={facebook} alt="" />{" "}
 				<span className="ml-2">Login With Facebook</span>
 			</button>
+			<ToastContainer></ToastContainer>
 		</div>
 	);
 };

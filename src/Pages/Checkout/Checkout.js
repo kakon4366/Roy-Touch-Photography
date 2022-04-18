@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import paypal from "../../images/paypal.png";
 import visa from "../../images/visa.png";
 import mastercard from "../../images/mastercard.png";
-
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
@@ -22,6 +20,7 @@ const Checkout = () => {
 		(event) => event.id === parseInt(checkoutId)
 	);
 
+	//billing information handler
 	const handleBillingInfo = (e) => {
 		e.preventDefault();
 
